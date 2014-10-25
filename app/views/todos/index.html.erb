@@ -1,0 +1,32 @@
+<h1>待办清单</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>领主</th>
+      <th>事项名称</th>
+      <th>描述</th>
+      <th>问题创建时间</th>
+      <th>是否完成</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @todos.each do |todo| %>
+      <tr>
+        <td><%= todo.user.name %></td>
+        <td><%= todo.title %></td>
+        <td><%= todo.body %></td>
+        <td><%= todo.create_time %></td>
+        <td><%= todo.has_finished %></td>
+        <td><%= link_to '编辑', edit_todo_path(todo) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Todo', new_todo_path %>
+<%= link_to 'Send Mail', new_mailer_path %>

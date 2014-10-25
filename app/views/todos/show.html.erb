@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @todo.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @todo.body %>
+</p>
+
+<p>
+  <strong>Create time:</strong>
+  <%= @todo.create_time %>
+</p>
+
+<p>
+  <strong>Has finished:</strong>
+  <%= @todo.has_finished %>
+</p>
+
+<%= link_to 'Edit', edit_todo_path(@todo) %> |
+<%= link_to 'Back', todos_path %>
