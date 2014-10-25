@@ -20,5 +20,10 @@
   <%= @todo.has_finished %>
 </p>
 
+<p>
+  <strong>领主</strong>
+  <%= @todo.user.name %>
+</p>
+
 <%= link_to 'Edit', edit_todo_path(@todo) %> |
 <%= link_to 'Back', todos_path %>

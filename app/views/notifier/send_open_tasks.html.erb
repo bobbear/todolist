@@ -1,5 +1,15 @@
 <h1>任务提醒</h1>
 
 <p>
-  <%= @greeting %>，这是一个任务提醒的邮件
+  <%= @greeting %>，这是一个任务提醒的邮件,你的名下还有以下几个问题需要解决:
+
+  <% if @unfinished_todos %>
+    <ul>
+    <% @unfinished_todos.each do |unfinished_todo| %>
+      <li>
+        <%= unfinished_todo.title %>
+      </li>
+    <% end %>
+    </ul>
+  <% end %>
 </p>

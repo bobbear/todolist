@@ -6,9 +6,9 @@ class Notifier < ActionMailer::Base
   #
   #   en.notifier.send_open_tasks.subject
   #
-  def send_open_tasks
-    @greeting = "Hi"
-
-    mail to: "zhangwy@vip.163.com"
+  def send_open_tasks(user)
+      @greeting = "Hi, " + user.name
+      @unfinished_todos = Todo.where(:has_finished=>false,:user_id=>user.id)
+      mail to: user.email, subject: "领主邮件提醒"
   end
 end

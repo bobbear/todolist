@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+.todo-item-done {
+  text-decoration : line-through;
+  color: #cccccc;
+}

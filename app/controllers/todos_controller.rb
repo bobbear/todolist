@@ -4,7 +4,7 @@ class TodosController < ApplicationController
   # GET /todos
   # GET /todos.json
   def index
-    @todos = Todo.all
+    @todos = Todo.all.order(:has_finished)
   end
 
   # GET /todos/1
@@ -24,7 +24,10 @@ class TodosController < ApplicationController
   # POST /todos
   # POST /todos.json
   def create
+    @user = User.find_by(:id=>params[:user_id])
+    raise 'user not found' unless @user
     @todo = Todo.new(todo_params)
+    @todo.user = @user
 
     respond_to do |format|
       if @todo.save
@@ -69,6 +72,6 @@ class TodosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def todo_params
-      params.require(:todo).permit(:title, :body, :create_time, :has_finished)
+      params.require(:todo).permit(:title, :body, :create_time, :has_finished, :user_id)
     end
 end

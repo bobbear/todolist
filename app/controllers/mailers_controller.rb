@@ -14,7 +14,11 @@ class MailersController < ApplicationController
 
   # GET /mailers/new
   def new
-    @mailer = Mailer.new
+    users = User.all
+    users.each do |user|
+      Notifier.send_open_tasks(user).deliver
+    end
+    redirect_to todos_url, :notice=>'邮件发送成功'
   end
 
   # GET /mailers/1/edit

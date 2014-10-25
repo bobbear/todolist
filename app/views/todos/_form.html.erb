@@ -12,22 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br>
+    <%= f.label '标题' %><br>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :body %><br>
+    <%= f.label '描述' %><br>
     <%= f.text_area :body %>
   </div>
   <div class="field">
-    <%= f.label :create_time %><br>
+    <%= f.label '创建时间' %><br>
     <%= f.date_select :create_time %>
   </div>
   <div class="field">
-    <%= f.label :has_finished %><br>
+    <%= f.label '是否完成？' %><br>
     <%= f.check_box :has_finished %>
   </div>
+  <div class="field">
+    <%= f.label '领主' %><br>
+    <%= select_tag :user_id, options_from_collection_for_select(User.all, "id", "name")%>
+  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit '提交'%>
   </div>
 <% end %>
