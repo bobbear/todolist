@@ -38,3 +38,9 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# javascript运行环境运行less
+gem 'therubyracer'
+# less包
+gem 'less-rails'
+# bootstrap包
+gem 'twitter-bootstrap-rails'

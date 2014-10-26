@@ -1,3 +1,21 @@
 // Place all the styles related to the todos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.todo-table .todo-item-done {
+  text-decoration:line-through;
+  color:#cccccc;
+}
+
+.sidebar-action-icon {
+
+  margin-right: 5px;
+}
+.sidebar-nav .text-primary {
+
+  color: #428bca !important;
+}
+.user-image {
+  height: 32px;
+  width: 32px;
+}

@@ -1,37 +1,59 @@
-<%= form_for(@todo) do |f| %>
-  <% if @todo.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@todo.errors.count, "error") %> prohibited this todo from being saved:</h2>
+<%= form_for @todo, :html => { :class => "form-horizontal todo" } do |f| %>
 
-      <ul>
-      <% @todo.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+    <% if @todo.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@todo.errors.count, "error") %> prohibited this todo from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @todo.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label '标题' %><br>
-    <%= f.text_field :title %>
+  <div class="control-group">
+    <%= f.label '标题', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :title, :class => 'form-control' %>
+    </div>
+    <%= error_span(@todo[:title]) %>
   </div>
-  <div class="field">
-    <%= f.label '描述' %><br>
-    <%= f.text_area :body %>
+  <div class="control-group">
+    <%= f.label '描述', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :body, :class => 'form-control' %>
+    </div>
+    <%= error_span(@todo[:body]) %>
   </div>
-  <div class="field">
-    <%= f.label '创建时间' %><br>
-    <%= f.date_select :create_time %>
+  <div class="control-group">
+    <%= f.label '创建时间', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.date_field :create_time, :class => 'form-control', :value => Date.today.strftime("%Y-%m-%d") %>
+    </div>
+    <%= error_span(@todo[:create_time]) %>
   </div>
-  <div class="field">
-    <%= f.label '是否完成？' %><br>
-    <%= f.check_box :has_finished %>
+  <div class="control-group">
+    <%= f.label '是否完成', :class => 'control-label' %>
+    <div class="controls">
+      <%= f.check_box :has_finished, :class => 'form-control' %>
+    </div>
+    <%= error_span(@todo[:has_finished]) %>
   </div>
-  <div class="field">
-    <%= f.label '领主' %><br>
-    <%= select_tag :user_id, options_from_collection_for_select(User.all, "id", "name")%>
+  <div class="control-group">
+    <%= f.label '领主', :class => 'control-label' %>
+    <div class="controls">
+      <%= select_tag :user_id, options_from_collection_for_select(User.all, "id", "name")%>
+    </div>
+    <%= error_span(@todo[:user_id]) %>
   </div>
-  <div class="actions">
-    <%= f.submit '提交'%>
-  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            todos_path, :class => 'btn btn-default' %>
+
 <% end %>

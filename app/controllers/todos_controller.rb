@@ -24,6 +24,12 @@ class TodosController < ApplicationController
   # POST /todos
   # POST /todos.json
   def create
+    puts 11111111111
+    puts params[:user_id]
+    puts params['user_id']
+    puts 22222222222
+    puts params
+    puts 33333333333
     @user = User.find_by(:id=>params[:user_id])
     raise 'user not found' unless @user
     @todo = Todo.new(todo_params)
